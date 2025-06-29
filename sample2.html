@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotated Traditional Before/After Slider</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            overflow-x: auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 40px 0;
+        }
+
+        .rotated-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-15deg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            cursor: ew-resize;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .before-image, .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .before-image {
+            background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=500&fit=crop');
+            z-index: 2;
+        }
+
+        .after-image {
+            background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop');
+            z-index: 1;
+        }
+
+        .reveal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: 3;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: ew-resize;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.1s ease;
+        }
+
+        .slider-handle:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .slider-handle:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .slider-handle::before {
+            content: '↔';
+        }
+
+        .divider-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: white;
+            transform: translateX(-50%);
+            z-index: 4;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .labels {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 5;
+            transform: rotate(15deg);
+        }
+
+        .label {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .instructions {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Alternative rotation angles */
+        .angle-controls {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .angle-btn {
+            padding: 8px 16px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .angle-btn:hover {
+            background: #555;
+        }
+
+        .angle-btn.active {
+            background: #007bff;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .slider-wrapper {
+                width: 90vw;
+                height: 60vw;
+                max-width: 500px;
+                max-height: 330px;
+            }
+            
+            .rotated-slider {
+                transform: rotate(-10deg);
+            }
+            
+            .labels {
+                transform: rotate(10deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rotated Traditional Before/After Slider</h1>
+        
+        <div class="angle-controls">
+            <button class="angle-btn" data-angle="0">0°</button>
+            <button class="angle-btn" data-angle="-10">-10°</button>
+            <button class="angle-btn active" data-angle="-15">-15°</button>
+            <button class="angle-btn" data-angle="-25">-25°</button>
+            <button class="angle-btn" data-angle="15">15°</button>
+        </div>
+        
+        <div class="slider-wrapper">
+            <div class="rotated-slider" id="rotatedSlider">
+                <div class="image-container">
+                    <div class="before-image"></div>
+                    <div class="after-image"></div>
+                    <div class="reveal-overlay" id="revealOverlay"></div>
+                    <div class="divider-line" id="dividerLine"></div>
+                    <div class="slider-handle" id="sliderHandle"></div>
+                </div>
+            </div>
+            
+            <div class="labels">
+                <span class="label">Before</span>
+                <span class="label">After</span>
+            </div>
+        </div>
+        
+        <p class="instructions">
+            Drag the handle left and right to reveal the before/after images.<br>
+            Try different rotation angles using the buttons above!
+        </p>
+    </div>
+
+    <script>
+        const slider = document.getElementById('rotatedSlider');
+        const handle = document.getElementById('sliderHandle');
+        const revealOverlay = document.getElementById('revealOverlay');
+        const dividerLine = document.getElementById('dividerLine');
+        const angleButtons = document.querySelectorAll('.angle-btn');
+        
+        let isDragging = false;
+        let currentPosition = 50;
+        
+        function updateSlider() {
+            const position = Math.max(0, Math.min(100, currentPosition));
+            handle.style.left = position + '%';
+            dividerLine.style.left = position + '%';
+            revealOverlay.style.width = position + '%';
+        }
+        
+        function handleMove(e) {
+            const rect = slider.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            currentPosition = (x / rect.width) * 100;
+            updateSlider();
+        }
+        
+        // Mouse events
+        handle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) handleMove(e);
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+        
+        // Touch events
+        handle.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                handleMove(e);
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+        
+        // Click to move
+        slider.addEventListener('click', handleMove);
+        
+        // Angle controls
+        angleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const angle = button.dataset.angle;
+                angleButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                slider.style.transform = `rotate(${angle}deg)`;
+                document.querySelector('.labels').style.transform = `rotate(${-angle}deg)`;
+            });
+        });
+        
+        updateSlider();
+    </script>
+</body>
+</html>

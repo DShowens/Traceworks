@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Styles/style.css">
+    <title>TraceWorks</title>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="./Media/logo tag.svg" alt="TraceWorks Logo">
+    </div>
+    <div class="hero">
+        <div class="about">
+            <h1>About</h1>
+            <p>At Traceworks, we create the visuals that bring spaces to life. 
+                From drafting to 360 walkthroughs, 
+                our Acadiana-based studio helps real estate professionals and renovators alike.
+            </p>
+        </div>
+        <div class="slide-container">
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="./Media/AERIAL_erik-mclean-2KqEkzm5FIA-unsplash.jpg">
+                </div>
+                <div class="mySlides fade">
+                    <img src="./Media/BATH_alex-tyson-1eUtEZDFH9Y-unsplash.jpg">
+                </div>
+                <div class="mySlides fade">
+                    <img src="./Media/KITCHEN_brian-zajac-n8wF-38dASg-unsplash.jpg">
+                </div>
+            </div>
+            <div class="slide-buttons">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+        <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+        </script>
+    </div>
+    <div class="navbar">
+        <a href="./realty.html">REALTY</a>
+        <a href="./planning.html">PLANNING</a>
+        <a href="./gallery.html">GALLERY</a>
+        <a href="./contact.html">CONTACT</a>
+    </div>
+</body>
+</html>

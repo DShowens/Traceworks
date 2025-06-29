@@ -1,0 +1,325 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+    }
+  }
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+/* Custom styles for the application */
+:root {
+    --primary-color: hsl(200 25% 30%); /* Font color */
+    --secondary-color: hsl(204, 40%, 67%); /* Background */
+    --accent-color: hsl(200, 90%, 95%); /* Accent color for elements */
+    --logo-header-color: hsl(204 94% 87%); /*color picker guess for hand drawn idea*/
+    --font-family: 'Arial', sans-serif; /* Default font family */
+    --font-size: 16px; /* Default font size */
+}
+
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--primary-color);
+    background-color: var(--secondary-color); /* Default background color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color); /* Heading color */
+}
+
+p {
+    margin-bottom: 1em; /* Spacing between paragraphs */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/*Class styling*/
+
+.logo-container {
+    position: relative;
+    max-inline-size: auto;
+    clip-path: polygon(100% 0, 100% 100%, 200px 100%, 0 50%, 0 0);
+    background: linear-gradient(to right, hsl(202, 100%, 98%), var(--logo-header-color));
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    margin: 20px 0 40px 0;
+    block-size: 100px;
+    overflow: visible;
+    ;
+
+  & img {
+    position: absolute;
+    top: -90%; /* Adjust logo position */
+    left: 0%;
+    transform: translateY(0%);
+    transform: translateX(0%);
+    inline-size: 300px; /* Adjust logo size */
+    block-size: fit-content;
+    margin-left: 20px;
+  }
+}
+
+.hero {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 20px;
+  /* flex-basis: 1; */
+  max-inline-size: 1200px;
+  padding: 20px 0 20px 0;
+  margin: 0 auto;
+  /* margin: 0 10px; */
+  overflow: hidden;
+  background-color: var(--accent-color); /* Default accent color */
+
+  & div img {
+    object-fit: contain;
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  }
+}
+
+.hero:has(embed[type="application/pdf"]) .gallery-images {
+    aspect-ratio: 36 / 24; /* Standard letter size ratio */
+    width: 50%;
+    margin: 0 auto;
+}
+
+.hero:has(embed[type="application/pdf"]) .gallery-images embed {
+    width: 100%;
+    height: 100%;
+} 
+
+.about, .realty-overview, .planning, .gallery, .contact {
+  max-inline-size: 45ch;
+  margin: 1ch;
+  
+}
+
+.hero:has(.realty-overview)  {
+  display:block;
+  grid-template-columns: none;
+
+}
+
+.realty-overview {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  flex-basis: 1;
+  gap: 20px;  
+  padding: 0 20px;
+  max-inline-size: 1200px;
+  align-items: center;
+  margin: 0 auto;
+
+ & h1 {
+  align-self: start;
+  margin: 0;
+  padding: 0;
+ } 
+
+ & p {
+  margin: 0;
+  padding: 0;
+  max-inline-size: 80ch;
+ }
+}
+
+.three-pics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-inline-size: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  & img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    border: solid 2px var(--primary-color); 
+    border-radius: 10px;
+  }
+
+  & h2 {
+    text-align: center;
+    font-size: 1.25em;
+  }
+}
+
+.realty-pricing-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-inline-size: 800px;
+  margin: 0 auto;
+
+  & .realty-pricing > h2,
+  & .realty-pricing > h3 {
+
+    color: var(--primary-color);
+    text-align: center;
+    margin: 0;
+  }
+
+  & .realty-pricing {
+    outline: 2px solid var(--primary-color);
+    border-radius: 10px;
+  }
+
+  & .realty-pricing > h3 {
+    text-decoration: underline;
+  }
+
+& .vertical-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  & a {
+    min-inline-size: 12ch;
+    min-block-size: 2rem;
+    text-align: center;
+    margin: 20px auto;
+    padding: 0.5em 1em;
+    background-color: var(--logo-header-color);
+    color: var(--primary-color);  
+    border: solid 2px var(--primary-color); 
+    border-radius: 5px;
+
+  }
+}
+
+}
+
+
+& .realty-pricing > ul{
+    list-style: none;
+    padding: 0;
+    margin: 10px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* outline: 1px solid var(--primary-color); */
+}
+
+
+
+
+
+
+
+.slide-container {
+  max-inline-size: 80%;
+  box-sizing: border-box;
+  padding: 0 .5rem;
+  
+  /*temporary filler styles*/
+  width: 300px;
+  height: 200px;
+
+
+}
+
+.slide-buttons {
+
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+  padding-bottom: 1rem;
+
+  & a {
+    background-color: var(--logo-header-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-size: 1em;
+
+  }
+
+  & a:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    cursor: pointer;
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  /* border-top: rgba(0, 0, 0, 0.1) 2px solid;
+  border-bottom: rgba(0, 0, 0, 0.1) 2px solid; */
+  max-inline-size: 1200px;
+  margin: 5px auto;
+
+  & a {
+    background-color: var(--logo-header-color );
+    inline-size: fit-content;
+    padding: .5em 1em;
+    border-radius: 15px;
+    font-size: 1.2em;
+    text-decoration: none;
+
+  }
+
+  & a:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+  }
+}
