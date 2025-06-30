@@ -330,12 +330,14 @@ a:hover {
   .logo-container {
     clip-path: none;
     width: 100%;
+    margin-top: 0;
   }
 
   .logo-container > img {
     
     position: absolute;
-    top: -90%; /* Adjust logo position */
+    top: -100%; /* Adjust logo position */
+    margin-top: 20px;
     left: auto;
     inline-size: 300px; /* Adjust logo size */
     block-size: fit-content;
