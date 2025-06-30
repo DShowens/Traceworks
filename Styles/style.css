@@ -326,7 +326,7 @@ a:hover {
 
 /* MOBILE STYLES */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1300px) {
   .logo-container {
     clip-path: none;
     width: 100%;
