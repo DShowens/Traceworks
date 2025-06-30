@@ -189,7 +189,6 @@ a:hover {
     aspect-ratio: 16 / 9; /* Maintain aspect ratio */
     border: solid 2px var(--primary-color); 
     border-radius: 10px;
-    z-index: 1;
   }
 
   & h2 {
@@ -323,4 +322,36 @@ a:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
   }
+}
+
+/* MOBILE STYLES */
+
+@media (max-width: 768px) {
+  .logo-container {
+    clip-path: none;
+  }
+
+  /* .hero {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .hero:has(embed[type="application/pdf"]) .gallery-images {
+    aspect-ratio: 16 / 9; 
+    width: 100%;
+  }
+
+  .hero:has(embed[type="application/pdf"]) .gallery-images embed {
+    width: 100%;
+    height: auto;
+  }
+
+  .three-pics {
+    grid-template-columns: 1fr;
+  }
+
+  .realty-overview {
+    grid-template-columns: 1fr;
+    text-align: center;
+  } */
 }
