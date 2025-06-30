@@ -189,6 +189,7 @@ a:hover {
     aspect-ratio: 16 / 9; /* Maintain aspect ratio */
     border: solid 2px var(--primary-color); 
     border-radius: 10px;
+    z-index: 1;
   }
 
   & h2 {
