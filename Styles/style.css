@@ -332,10 +332,13 @@ a:hover {
     width: 100%;
   }
 
-  .navbar {
+  .navbar,
+  .hero, 
+  .three-pics,
+  .realty-pricing-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
   }
-  
 }
