@@ -326,32 +326,16 @@ a:hover {
 
 /* MOBILE STYLES */
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .logo-container {
     clip-path: none;
-  }
-
-  /* .hero {
-    grid-template-columns: 1fr;
-    padding: 10px;
-  }
-
-  .hero:has(embed[type="application/pdf"]) .gallery-images {
-    aspect-ratio: 16 / 9; 
     width: 100%;
   }
 
-  .hero:has(embed[type="application/pdf"]) .gallery-images embed {
-    width: 100%;
-    height: auto;
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
-
-  .three-pics {
-    grid-template-columns: 1fr;
-  }
-
-  .realty-overview {
-    grid-template-columns: 1fr;
-    text-align: center;
-  } */
+  
 }
